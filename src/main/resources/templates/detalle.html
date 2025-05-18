@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Checklist - ' + ${checklist.titulo}">Checklist</title>
+</head>
+
+
+<body>
+
+    <h1 th:text="${checklist.titulo}">Título Lista</h1>
+    <form th:action="@{/checklists/{id}/items(id=${checklist.id})}" th:object="${nuevoItem}" method="post">
+        <input type="text" th:field="*{descripcion}" placeholder="Descripción" required />
+        <button type="submit">Agregar item</button>
+    </form>
+    <ul>
+        <li th:each="item : ${checklist.items}">
+            <span th:text="${item.descripcion}">Item</span>
+            <span th:text="${item.completado} ? '✅' : '❌'">Estado</span>
+            <a
+                th:href="@{/checklists/{checklistId}/items/{itemId}/toggle(checklistId=${checklist.id}, itemId=${item.id})}">Toggle</a>
+        </li>
+    </ul>
+    <a th:href="@{/checklists}">Volver</a>
+</body>
+
+</html>

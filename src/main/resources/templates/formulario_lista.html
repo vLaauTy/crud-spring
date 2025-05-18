@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Lista</title>
+</head>
+
+
+<body>
+
+    <h1 th:text="${checklist.id} != null ? 'Editar Checklist' : 'Nueva Checklist'">Título</h1>
+    <form th:action="@{/checklists}" th:object="${checklist}" method="post">
+        <input type="text" th:field="*{titulo}" placeholder="Título" required />
+        <input type="text" th:field="*{descripcion}" placeholder="Descripción" />
+        <input type="checkbox" th:field="*{estado}" /> Activa
+        <button type="submit">Guardar</button>
+    </form>
+    <a th:href="@{/checklists}">Volver</a>
+</body>
+
+</html>

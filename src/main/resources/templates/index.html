@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Checklists</title>
+</head>
+
+
+<body>
+    <div sec:authorize="isAuthenticated()">
+        Bienvenido <span sec:authentication="name"></span>
+    </div>
+    <h1>Mis Checklists</h1>
+    <a th:href="@{/checklists/nuevo}">Crear nueva lista</a>
+    <ul>
+        <li th:each="lista : ${checklists}">
+            <a th:href="@{/checklists/{id}(id=${lista.id})}" th:text="${lista.titulo}">Título</a>
+            <a th:href="@{/checklists/{id}/editar(id=${lista.id})}">Editar</a>
+            <a th:href="@{/checklists/{id}/eliminar(id=${lista.id})}">Eliminar</a>
+        </li>
+    </ul>
+</body>
+
+</html>

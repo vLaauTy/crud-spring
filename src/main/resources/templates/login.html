@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Iniciar sesión</title>
+</head>
+
+<body>
+    <h2>Iniciar sesión</h2>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>Usuario:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label>Contraseña:</label>
+            <input type="password" name="password" id="password" />
+            <button type="button" onclick="togglePassword()">Ver</button>
+        </div>
+        <div>
+            <button type="submit">Entrar</button>
+        </div>
+        <div th:if="${param.error}">
+            <p style="color:red;">Usuario o contraseña incorrectos</p>
+        </div>
+    </form>
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+            } else {
+                pwd.type = 'password';
+            }
+        }
+    </script>
+</body>
+
+</html>
