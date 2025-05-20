@@ -31,9 +31,9 @@ public class ChecklistController {
     }
 
     @PostMapping
-    public Checklist crear(@RequestBody Checklist checklist) {
-
-        return service.save(checklist);
+    public ResponseEntity<Checklist> crear(@RequestBody Checklist checklist) {
+        Checklist creado = service.save(checklist);
+        return ResponseEntity.status(201).body(creado);
     }
 
     @GetMapping("/{id}")
